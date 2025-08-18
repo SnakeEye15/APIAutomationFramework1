@@ -62,12 +62,36 @@ public class PayloadManager {
 
     }
 
+
+    public String fullUpdatePayloadAsString(){
+        Booking booking = new Booking();
+        booking.setFirstname("Ajay");
+        booking.setLastname("Sharma");
+        booking.setTotalprice(115);
+        booking.setDepositpaid(true);
+
+        Bookingdates bookingdates = new Bookingdates();
+        bookingdates.setCheckin("2025-08-19");
+        bookingdates.setCheckout("2025-08-25");
+        booking.setBookingdates(bookingdates);
+        booking.setAdditionalneeds("Lunch");
+
+        return gson.toJson(booking);
+
+    }
     //Convert the JSON String to java object so that we can verify the response
     //DeSerialization
     public BookingResponse bookingResponseJava(String responseString){
         gson= new Gson();
         BookingResponse bookingResponse=gson.fromJson(responseString,BookingResponse.class);
         return bookingResponse;
+    }
+
+    //DeSerializatoin for Boooking
+    public Booking getResponseFromJSON(String responseString){
+        gson= new Gson();
+        Booking bookingresponse=gson.fromJson(responseString,Booking.class);
+        return bookingresponse;
     }
 
 

@@ -3,7 +3,6 @@ package com.apiFramework.base;
 import com.apiFramework.asserts.AssertActions;
 import com.apiFramework.endpoints.APIConstants;
 import com.apiFramework.modules.PayloadManager;
-import com.beust.ah.A;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
@@ -11,9 +10,7 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
 public class BaseTest {
@@ -56,5 +53,17 @@ public class BaseTest {
     @AfterTest
     public void tearDown(){
         System.out.println("Finish the Test!");
+    }
+
+    public String getToken(){
+        requestSpecification=RestAssured.given();
+        requestSpecification.baseUri(APIConstants.BASE_URL)
+                .basePath(APIConstants.AUTH_URL);
+
+        //Setting the payload
+        String payload=payloadManager.setAuthPayload();
+        response=requestSpecification.contentType(ContentType.JSON).body(payload).post();
+        String token=payloadManager.getTokenFromJson(response.asString());
+        return token;
     }
 }
