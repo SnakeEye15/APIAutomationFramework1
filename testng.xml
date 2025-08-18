@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="/Users/dheerajv/IdeaProjects/APIAutomationFramework1">
+        <classes>
+            <class name="com.apiFramework.tests.crud.TestCreateBooking">
+                <methods>
+                    <include name="testCreateBookingPOST_POSITIVE"/>
+                    <include name="testCreateBookingPOST_NEGATIVE"/>
+                    <include name="testCreateBookingPOST_POSITIVE_CHINESS"/>
+                    <include name="testCreateBookingPOST_POSITIVE_FAKER_RANDOM_DATA"/>
+                </methods>
+            </class>
+            <class name="com.apiFramework.tests.crud.TestCreateToken">
+                <methods>
+                    <include name="testTokenPost"/>
+                    <include name="testTokenPost_Negative"/>
+                </methods>
+            </class>
+            <class name="com.apiFramework.tests.crud.TestHealthCheck">
+                <methods>
+                    <include name="testGetHealthCheck"/>
+                </methods>
+            </class>
+            <class name="com.apiFramework.tests.e2e_integration.TestIntegratoinFlow1">
+                <methods>
+                    <include name="testCreateBooking"/>
+                    <include name="verifyBookingID"/>
+                    <include name="updateBookingID"/>
+                    <include name="testDeleteBookingByID"/>
+                </methods>
+            </class>
+            <class name="com.apiFramework.tests.sample.TestIntegrationSample">
+                <methods>
+                    <include name="testCreateBooking"/>
+                    <include name="testVerifyBookingId"/>
+                    <include name="testUpdateBookingByID"/>
+                    <include name="testDeleteBookingById"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
